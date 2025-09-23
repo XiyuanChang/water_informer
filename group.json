@@ -1,0 +1,111 @@
+{
+    "1": [
+        "runoff"
+    ],
+    "2": [
+        "pr",
+        "sph",
+        "srad",
+        "tmmn",
+        "tmmx",
+        "pet",
+        "etr"
+    ],
+    "3": [
+        "ph",
+        "Conduc",
+        "Ca",
+        "Mg",
+        "K",
+        "Na",
+        "NH4",
+        "NO3",
+        "Cl",
+        "SO4",
+        "distNTN"
+    ],
+    "4": [
+        "LAI",
+        "FAPAR",
+        "NPP"
+    ],
+    "5": [
+        "datenum",
+        "sinT",
+        "cosT"
+    ],
+    "6": [
+        "HYDRO_DISTURB_INDX",
+        "BAS_COMPACTNESS",
+        "DRAIN_SQKM"
+    ],
+    "7": [
+        "SNOW_PCT_PRECIP",
+        "GEOL_REEDBUSH_DOM",
+        "GEOL_REEDBUSH_DOM_PCT"
+    ],
+    "8": [
+        "STREAMS_KM_SQ_KM",
+        "STRAHLER_MAX",
+        "MAINSTEM_SINUOUSITY",
+        "BFI_AVE",
+        "CONTACT",
+        "PCT_1ST_ORDER",
+        "PCT_2ND_ORDER",
+        "PCT_3RD_ORDER",
+        "PCT_4TH_ORDER",
+        "PCT_5TH_ORDER",
+        "PCT_6TH_ORDER_OR_MORE"
+    ],
+    "9": [
+        "DDENS_2009",
+        "STOR_NOR_2009"
+    ],
+    "10": [
+        "NPDES_MAJ_DENS"
+    ],
+    "11": [
+        "DEVNLCD06",
+        "FORESTNLCD06",
+        "PLANTNLCD06",
+        "WATERNLCD06",
+        "WOODYWETNLCD06",
+        "EMERGWETNLCD06"
+    ],
+    "12": [
+        "NITR_APP_KG_SQKM",
+        "PHOS_APP_KG_SQKM"
+    ],
+    "13": [
+        "PESTAPP_KG_SQKM"
+    ],
+    "14": [
+        "ECO2_BAS_DOM",
+        "ECO3_BAS_DOM",
+        "NUTR_BAS_DOM",
+        "HLR_BAS_DOM_100M",
+        "PNV_BAS_DOM"
+    ],
+    "15": [
+        "AWCAVE",
+        "PERMAVE",
+        "BDAVE",
+        "OMAVE",
+        "WTDEPAVE",
+        "ROCKDEPAVE",
+        "CLAYAVE",
+        "SILTAVE",
+        "KFACT_UP",
+        "RFACT"
+    ],
+    "16": [
+        "ELEV_MEAN_M_BASIN",
+        "SLOPE_PCT",
+        "ASPECT_DEGREES"
+    ],
+    "17": [
+        "LAT_GAGE",
+        "LNG_GAGE"
+    ]
+    
+}
