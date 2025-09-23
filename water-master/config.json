@@ -1,0 +1,109 @@
+{
+    "name": "Mnist_LeNet",
+    "n_gpu": 1,
+    "normalize": "LogMinMax",
+    "y_normalize": true,
+    "mixup": false,
+    "sigma": 1,
+    "mix_alpha": 9,
+    "mix_beta": 0.5,
+    "k": 2,
+    "threshold": [1, 1, 1],
+    "valid_threshold": 2,
+    "metric_threshold": 0,
+
+    "dataset": "ClimateDatasetV2C",
+    "x_feature": ["runoff", "pr", "sph", "srad", "tmmn", "tmmx", "pet", "etr", "ph", "Conduc", "Ca", "Mg", "K", "Na", "NH4", "NO3", "Cl", "SO4", "distNTN", "LAI", "FAPAR", "NPP", "datenum", "sinT", "cosT"],
+    "y_feature": ["00010", "00095", "00300", "00400", "00405", "00600", "00605", "00618", "00660", "00665", "00681", "00915", "00925", "00930", "00935", "00940", "00945", "00955", "71846", "80154"],
+    "minmax_feature": ["LAI", "FAPAR", "NPP", "LAT_GAGE", "LNG_GAGE", "datenum", "sinT", "cosT", "00010", "00300", "00400"],
+    "location_static": true,
+    "exclude": 0,
+    "arch_name": "TriDeepONet",
+    "trunk": {
+        "type": "MLP",
+        "args": {
+            "input_dim": 69,
+            "output_dim": 512,
+            "layer_sizes": [
+                1024,
+                1024,
+                1024,
+                1024,
+                1024,
+                1024,
+                1024
+            ],
+
+            "dropout_rate": 0.0
+        }
+    },
+    "branch": {
+        "type": "MLP",
+        "args": {
+            "input_dim": 5,
+            "output_dim": 512,
+            "layer_sizes": [
+                1024,
+                1024,
+                1024,
+                1024,
+                1024,
+                1024,
+                1024
+            ],
+            "dropout_rate": 0.0
+        }
+    },
+    "z_net": {
+        "type": "MLP",
+        "args": {
+            "input_dim": 512,
+            "output_dim": 20,
+            "layer_sizes": [
+                512,
+                256
+            ],
+            "dropout_rate": 0.0
+        }
+    },
+    "activation": "LeakyReLU",
+
+    "data_loader": {
+        "type": "",
+        "args":{
+            "batch_size": 512,
+            "shuffle": true,
+            "num_workers": 10
+        }
+    },
+    "optimizer": {
+        "type": "AdamW",
+        "args":{
+            "lr": 0.001,
+            "weight_decay": 0
+        }
+    },
+    "loss": "mse_loss",
+    "metrics": [
+        "kge", "r_squared", "pbias"
+    ],
+    "lr_scheduler": {
+        "type": "StepLR",
+        "args": {
+            "step_size": 100,
+            "gamma": 0.5
+        }
+    },
+    "trainer": {
+        "epochs": 1,
+
+        "save_dir": "unified_ablation_twostatic_threedate_logminmax_y/baseline1024",
+        "save_period": 200,
+        "verbosity": 2,
+        "log_epoch": 25,
+        
+        "early_stop": 600,
+
+        "tensorboard": true
+    }
+}

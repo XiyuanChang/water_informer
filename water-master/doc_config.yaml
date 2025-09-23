@@ -1,0 +1,22 @@
+model_config:
+  valid_threshold:
+    type: int
+    description: 用于在validation阶段report结果和筛选模型。当其大于0时，站点y的有效分量小于threshold的结果不计入report的metric
+  
+  metric_threshold:
+    type: int
+    description: 用于report全数据集的结果。当其大于0时，站点y的有效分量小于threshold的结果不计入report的metric
+  
+  x_feature:
+    type: list
+    description: 筛选用于训练的时序特征
+
+  y_feature:
+      type: list
+      description: 筛选y
+  
+  test_station:
+    type: int
+    description: (LSTM only) 在数据集中选取一定数量的子集用于validation选模型，该值控制选多少站点作为子集
+  
+  

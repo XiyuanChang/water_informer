@@ -1,0 +1,62 @@
+{
+    "name": "lstm",
+    "dataset": "ClimateDatasetV2C",
+    "root_dir": "/home/colligo/multiagent-ft/water/climate_new",
+    "threshold": [1, 1, 1],
+    "normalize": "LogMinMax",
+    "y_normalize": true,
+    "n_gpu": 1,
+    "test_station": 482,
+    "valid_threshold": 2,
+    "metric_threshold": 0,
+
+    "x_feature": ["runoff", "pr", "sph", "srad", "tmmn", "tmmx", "pet", "etr", "ph", "Conduc", "Ca", "Mg", "K", "Na", "NH4", "NO3", "Cl", "SO4", "distNTN", "LAI", "FAPAR", "NPP", "datenum", "sinT", "cosT"],
+    "y_feature": ["00665"],
+    "minmax_feature": ["LAI", "FAPAR", "NPP", "LAT_GAGE", "LNG_GAGE", "datenum", "sinT", "cosT", "00010", "00300", "00400"],
+    "exclude": 0,
+    "arch": {
+        "in_dim": 74,
+        "out_dim": 1,
+        "hid": 512,
+        "dropout": 0.3,
+        "nLayer": 2
+    },
+
+    "data_loader": {
+        "type": "",
+        "args":{
+            "batch_size": 512,
+            "num_workers": 10
+        }
+    },
+    
+    "loss": "mse_loss",
+    "metrics": [
+        "kge", "r_squared", "pbias"
+    ],
+    "optimizer": {
+        "type": "AdamW",
+        "args":{
+            "lr": 0.001
+        }
+    },
+    "lr_scheduler": {
+        "type": "StepLR",
+        "args": {
+            "step_size": 100,
+            "gamma": 0.5
+        }
+    },
+
+    "trainer": {
+        "epochs": 300,
+        "save_dir": "unified_ablation_lstm_logminmax_y/baseline_dropout_0.3_665",
+        "save_period": 200,
+        "verbosity": 2,
+        "log_epoch": 10,
+        
+        "early_stop": 500,
+
+        "tensorboard": false
+    }
+}
