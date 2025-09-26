@@ -2,7 +2,7 @@
     "name": "informer",
     "model_type": "informer",
     "dataset": "ClimateDatasetV2C",
-    "root_dir": "/home/colligo/multiagent-ft/water/climate_new",
+    "root_dir": "./climate_washed", 
     "threshold": [1, 1, 1],
     "normalize": "LogMinMax",
     "y_normalize": true,
@@ -12,26 +12,27 @@
     "metric_threshold": 0,
 
     "x_feature": ["runoff", "pr", "sph", "srad", "tmmn", "tmmx", "pet", "etr", "ph", "Conduc", "Ca", "Mg", "K", "Na", "NH4", "NO3", "Cl", "SO4", "distNTN", "LAI", "FAPAR", "NPP", "datenum", "sinT", "cosT"],
-    "y_feature": ["00665"],
+    "y_feature": ["00010","00095","00300","00400","00405","00600","00605","00618","00660","00665",
+              "00681","00915","00925","00930","00935","00940","00945","00955","71846","80154"],
     "minmax_feature": ["LAI", "FAPAR", "NPP", "LAT_GAGE", "LNG_GAGE", "datenum", "sinT", "cosT", "00010", "00300", "00400"],
     "exclude": 0,
     
     "arch": {
         "in_dim": 74,
-        "out_dim": 1,
+        "out_dim": 20,
         "dropout": 0.1
     },
 
     "seq_len": 365,
     "label_len": 96,
     "pred_len": 1,
-    "d_model": 256,
+    "d_model": 512,
     "n_heads": 4,
-    "e_layers": 2,
-    "d_layers": 1,
+    "e_layers": 3,
+    "d_layers": 2,
     "d_ff": 2048,
     "factor": 5,
-    "attn": "prob",
+    "attn": "full",
     "embed": "timeF",
     "freq": "h",
     "activation": "gelu",
@@ -58,10 +59,10 @@
         }
     },
     "lr_scheduler": {
-        "type": "StepLR",
+        "type": "CosineAnnealingLR",
         "args": {
-            "step_size": 100,
-            "gamma": 0.5
+            "T_max": 300,
+            "eta_min": 1e-6
         }
     },
 
