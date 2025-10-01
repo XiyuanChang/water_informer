@@ -1,0 +1,79 @@
+{
+    "name": "informer",
+    "model_type": "informer",
+    "dataset": "ClimateDatasetV2C",
+    "root_dir": "./climate_washed", 
+    "threshold": [1, 1, 1],
+    "normalize": "LogMinMax",
+    "y_normalize": true,
+    "n_gpu": 1,
+    "test_station": 482,
+    "valid_threshold": 2,
+    "metric_threshold": 0,
+
+    "x_feature": ["runoff", "pr", "sph", "srad", "tmmn", "tmmx", "pet", "etr", "ph", "Conduc", "Ca", "Mg", "K", "Na", "NH4", "NO3", "Cl", "SO4", "distNTN", "LAI", "FAPAR", "NPP", "datenum", "sinT", "cosT"],
+    "y_feature": ["runoff", "pr", "sph", "srad", "tmmn", "tmmx", "pet", "etr", "ph", "Conduc", "Ca", "Mg", "K", "Na", "NH4", "NO3", "Cl", "SO4", "distNTN", "LAI", "FAPAR", "NPP", "datenum", "sinT", "cosT"],
+    "minmax_feature": ["LAI", "FAPAR", "NPP", "LAT_GAGE", "LNG_GAGE", "datenum", "sinT", "cosT", "00010", "00300", "00400"],
+    "exclude": 0,
+    
+    "arch": {
+        "in_dim": 74,
+        "out_dim": 25,
+        "dropout": 0.1
+    },
+
+    "seq_len": 365,
+    "label_len": 96,
+    "pred_len": 1,
+    "d_model": 512,
+    "n_heads": 4,
+    "e_layers": 3,
+    "d_layers": 2,
+    "d_ff": 2048,
+    "factor": 5,
+    "attn": "full",
+    "embed": "timeF",
+    "freq": "h",
+    "activation": "gelu",
+    "distil": true,
+    "mix": true,
+    "output_attention": false,
+
+    "data_loader": {
+        "type": "",
+        "args":{
+            "batch_size": 512,
+            "num_workers": 10
+        }
+    },
+    
+    "loss": "mse_loss",
+    "metrics": [
+        "kge", "r_squared", "pbias"
+    ],
+    "optimizer": {
+        "type": "AdamW",
+        "args":{
+            "lr": 0.0001
+        }
+    },
+    "lr_scheduler": {
+        "type": "CosineAnnealingLR",
+        "args": {
+            "T_max": 300,
+            "eta_min": 1e-6
+        }
+    },
+
+    "trainer": {
+        "epochs": 6,
+        "save_dir": "unified_ablation_informer_pretrain/baseline_dropout_0.1_665",
+        "save_period": 2,
+        "verbosity": 2,
+        "log_epoch": 2,
+        
+        "early_stop": 10,
+
+        "tensorboard": false
+    }
+} 
