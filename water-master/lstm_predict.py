@@ -72,7 +72,7 @@ def predict_whole_dataset(model, state_dicts, stats, config, valid_threshold=51,
     if not os.path.exists(metric_dir):
         os.makedirs(metric_dir)
 
-    with open("../group.json") as f:
+    with open("group.json") as f:
         group = json.load(f)
         if exclude:
             if isinstance(exclude, int):
@@ -196,7 +196,7 @@ def predict_whole_dataset(model, state_dicts, stats, config, valid_threshold=51,
         mask = torch.stack(list(masks[staid].values()), axis=0)
         dates = list(targets[staid].keys())
 
-        with open(f"../climate_washed/{staid}.csv") as f:
+        with open(f"climate_washed/{staid}.csv") as f:
             washed_df = pd.read_csv(f)
         allowed_dates = washed_df['Date'].tolist()
         # find the intersection between dates and allowed_dates
@@ -343,8 +343,12 @@ def predict_whole_dataset(model, state_dicts, stats, config, valid_threshold=51,
 
 
 if __name__ == "__main__":
-    path = "/home/kh31/Xiaobo/deeponet/MyProject/unified_ablation_lstm_logminmax_y/baseline_dropout_0.3/models/lstm/1016_145644/best_target_state_dict.pth"
-    config = "/home/kh31/Xiaobo/deeponet/MyProject/unified_ablation_lstm_logminmax_y/baseline_dropout_0.3/models/lstm/1016_145644/config.json"
+    path = "unified_ablation_lstm_logminmax_y/baseline_dropout_0.3_665/models/lstm/0929_144214/best_target_state_dict.pth"
+    config = "unified_ablation_lstm_logminmax_y/baseline_dropout_0.3_665/models/lstm/0929_142604/config.json"
+    # path = "unified_ablation_informer/baseline_dropout_0.1_665/models/informer/0929_144935/checkpoint-epoch70.pth"
+    # config = "unified_ablation_informer/baseline_dropout_0.1_665/models/informer/0929_144935/config.json"
+    # path = "/home/kh31/Xiaobo/deeponet/MyProject/unified_ablation_lstm_logminmax_y/baseline_dropout_0.3/models/lstm/1016_145644/best_target_state_dict.pth"
+    # config = "/home/kh31/Xiaobo/deeponet/MyProject/unified_ablation_lstm_logminmax_y/baseline_dropout_0.3/models/lstm/1016_145644/config.json"
     args = argparse.ArgumentParser(description='PyTorch')
     args.add_argument('-c', '--config', default=config, type=str,
                       help='config file path (default: config_LSTM.json)')
