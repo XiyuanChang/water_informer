@@ -422,7 +422,7 @@ class ClimateDatasetV2A(ClimateDatasetV2):
         if hasattr(self, "station_colnames"):
             station_cols = list(self.station_colnames)
         else:
-            # 兜底：从 station_feature 推断列顺序（你在 __init__ 里最好保存过 station_colnames）
+            
             raise AttributeError("self.station_colnames 未定义，请在 __init__ 中保存 df_station.columns[1:] 到 self.station_colnames")
 
         station_vals = self.station_feature[staid_str][0]  # 1 x S
@@ -434,7 +434,7 @@ class ClimateDatasetV2A(ClimateDatasetV2):
                 raise KeyError(f"Static feature '{c}' not found for station {staid_str}")
             data[c] = static_map[c]
 
-        # 2) 组 x（仅动态 74 列；如果你 x_feature 里只放动态列，这里就简单）
+        # 2) 组 x（仅动态 74 列）
         if self.x_feature:
             x = data.loc[:, self.x_feature].to_numpy()
         else:
